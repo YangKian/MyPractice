@@ -9,9 +9,9 @@ func (e DictionaryErr) Error() string {
 }
 
 var (
-	ErrWordExists = DictionaryErr("cannot add word because it already exists")
+	ErrWordExists       = DictionaryErr("cannot add word because it already exists")
 	ErrWordDoesNotExist = DictionaryErr("cannot update word because it does not exist")
-	ErrNotFound = DictionaryErr("could not find the word you were looking for")
+	ErrNotFound         = DictionaryErr("could not find the word you were looking for")
 )
 
 func (d Dictionary) Search(word string) (string, error) {
