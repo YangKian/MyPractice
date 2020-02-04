@@ -6,20 +6,20 @@ import (
 )
 
 type Person struct {
-	Name string
+	Name    string
 	Profile Profile
 }
 
 type Profile struct {
-	Age int
+	Age  int
 	City string
 }
 
 func TestWalk(t *testing.T) {
 
-	cases := []struct{
-		Name string
-		Input interface{}
+	cases := []struct {
+		Name          string
+		Input         interface{}
 		ExpectedCalls []string
 	}{
 		{
@@ -63,7 +63,7 @@ func TestWalk(t *testing.T) {
 		},
 		{
 			"Slices",
-			[]Profile {
+			[]Profile{
 				{33, "London"},
 				{34, "Reykjavík"},
 			},
@@ -71,7 +71,7 @@ func TestWalk(t *testing.T) {
 		},
 		{
 			"Arrays",
-			[2]Profile {
+			[2]Profile{
 				{33, "London"},
 				{34, "Reykjavík"},
 			},

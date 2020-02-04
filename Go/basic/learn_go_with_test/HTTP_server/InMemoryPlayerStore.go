@@ -2,9 +2,9 @@ package main
 
 import "sync"
 
-type InMemoryPlayerStore struct{
+type InMemoryPlayerStore struct {
 	store map[string]int
-	lock sync.RWMutex
+	lock  sync.RWMutex
 }
 
 func NewInMemoryPlayerStore() *InMemoryPlayerStore {

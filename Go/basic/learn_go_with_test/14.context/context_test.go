@@ -8,11 +8,11 @@ import (
 	"time"
 )
 
-func TestHandler (t *testing.T) {
+func TestHandler(t *testing.T) {
 	data := "hello, world"
 
 	t.Run("Test return data form store", func(t *testing.T) {
-		store := &SpyStore{response:data, t:t}
+		store := &SpyStore{response: data, t: t}
 		svr := Server(store)
 
 		request := httptest.NewRequest(http.MethodGet, "/", nil)
@@ -30,13 +30,13 @@ func TestHandler (t *testing.T) {
 	})
 
 	t.Run("Tells store to cancel work if request is cancelled", func(t *testing.T) {
-		store := &SpyStore{response:data, t:t}
+		store := &SpyStore{response: data, t: t}
 		svr := Server(store)
 
 		request := httptest.NewRequest(http.MethodGet, "/", nil)
 
 		cancellingCtx, cancel := context.WithCancel(request.Context())
-		time.AfterFunc(5 * time.Millisecond, cancel)
+		time.AfterFunc(5*time.Millisecond, cancel)
 		request = request.WithContext(cancellingCtx)
 
 		response := &SpyResponseWriter{}

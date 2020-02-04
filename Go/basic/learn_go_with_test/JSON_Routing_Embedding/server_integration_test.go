@@ -1,21 +1,13 @@
 package main
 
 import (
-	"log"
 	"net/http"
 	"net/http/httptest"
 	"testing"
 )
 
 func TestRecordingWinsAndRetrievingThem(t *testing.T) {
-	//store := NewInMemoryPlayerStore()
-	database, cleanDatabase := createTempFile(t, "")
-	defer cleanDatabase()
-	//store := &FileSystemPlayerStore{database}
-	store, err:= NewFileSystemPlayerStore(database)
-	if err != nil {
-		log.Fatalf("problem creating file system player store, %v ", err)
-	}
+	store := NewInMemoryPlayerStore()
 	server := NewPlayerServer(store)
 	player := "Pepper"
 
@@ -27,6 +19,7 @@ func TestRecordingWinsAndRetrievingThem(t *testing.T) {
 		response := httptest.NewRecorder()
 		server.ServeHTTP(response, newGetScoreRequest(player))
 		assertStatus(t, response.Code, http.StatusOK)
+
 		assertResponseBody(t, response.Body.String(), "3")
 	})
 

@@ -21,7 +21,7 @@ func TestRecordingWinsAndRetrievingThem(t *testing.T) {
 	go server.ServeHTTP(httptest.NewRecorder(), newPostWinRequest(player))
 	go server.ServeHTTP(httptest.NewRecorder(), newPostWinRequest(player))
 
-	time.Sleep(1*time.Second)
+	time.Sleep(1 * time.Second)
 	response := httptest.NewRecorder()
 	server.ServeHTTP(response, newGetScoreRequest(player))
 	assertStatus(t, response.Code, http.StatusOK)

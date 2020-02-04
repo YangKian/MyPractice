@@ -8,7 +8,7 @@ import (
 )
 
 type StubPlayerStore struct {
-	scores map[string]int
+	scores   map[string]int
 	winCalls []string
 }
 
@@ -22,38 +22,38 @@ func (s *StubPlayerStore) RecordWin(name string) {
 }
 
 func TestGETPlayers(t *testing.T) {
-	store := StubPlayerStore {
+	store := StubPlayerStore{
 		map[string]int{
 			"Pepper": 20,
-			"Floyd": 10,
+			"Floyd":  10,
 		},
 		nil,
 	}
 	server := &PlayerServer{&store} //注意store的指针类型实现了接口，所以要取地址
 
-	tests := []struct{
-		name string
-		player string
+	tests := []struct {
+		name               string
+		player             string
 		expectedHTTPStatus int
-		expectedScore string
+		expectedScore      string
 	}{
 		{
-			name: "Returns Pepper's score",
-			player:"Pepper",
-			expectedHTTPStatus:http.StatusOK,
-			expectedScore: "20",
+			name:               "Returns Pepper's score",
+			player:             "Pepper",
+			expectedHTTPStatus: http.StatusOK,
+			expectedScore:      "20",
 		},
 		{
-			name: "Returns Floyd's score",
-			player:"Floyd",
-			expectedHTTPStatus:http.StatusOK,
-			expectedScore: "10",
+			name:               "Returns Floyd's score",
+			player:             "Floyd",
+			expectedHTTPStatus: http.StatusOK,
+			expectedScore:      "10",
 		},
 		{
-			name: "Returns 404 on missing players",
-			player:"Apollo",
-			expectedHTTPStatus:http.StatusNotFound,
-			expectedScore: "0",
+			name:               "Returns 404 on missing players",
+			player:             "Apollo",
+			expectedHTTPStatus: http.StatusNotFound,
+			expectedScore:      "0",
 		},
 	}
 
@@ -71,12 +71,12 @@ func TestGETPlayers(t *testing.T) {
 }
 
 func TestStoreWins(t *testing.T) {
-	store := StubPlayerStore {
+	store := StubPlayerStore{
 		map[string]int{},
 		nil,
 	}
 	server := &PlayerServer{&store}
-	
+
 	t.Run("it returns accepted on POST", func(t *testing.T) {
 		request, _ := http.NewRequest(http.MethodPost, "/players/Pepper", nil)
 		response := httptest.NewRecorder()

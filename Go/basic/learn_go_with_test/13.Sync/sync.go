@@ -4,7 +4,7 @@ import "sync"
 
 type Counter struct {
 	value int
-	mu sync.Mutex
+	mu    sync.Mutex
 }
 
 func NewCounter() *Counter {

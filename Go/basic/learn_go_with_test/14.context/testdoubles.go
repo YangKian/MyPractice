@@ -10,7 +10,7 @@ import (
 
 type SpyStore struct {
 	response string
-	t         *testing.T
+	t        *testing.T
 }
 
 func (s *SpyStore) Fetch(ctx context.Context) (string, error) {
@@ -20,7 +20,7 @@ func (s *SpyStore) Fetch(ctx context.Context) (string, error) {
 		var result string
 		for _, c := range s.response {
 			select {
-			case <- ctx.Done():
+			case <-ctx.Done():
 				s.t.Log("spy store got cancelled")
 				return
 			default:
@@ -32,7 +32,7 @@ func (s *SpyStore) Fetch(ctx context.Context) (string, error) {
 	}()
 
 	select {
-	case <- ctx.Done():
+	case <-ctx.Done():
 		return "", ctx.Err()
 	case res := <-data:
 		return res, nil
