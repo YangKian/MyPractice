@@ -20,8 +20,28 @@ message ManyCalculateResponses {
     int32 result = 1;
 }
 
+message AvgCalculateRequests {
+    double num = 1;
+}
+
+message AvgCalculateResponse {
+    double result = 1;
+}
+
+message FindMaxRequests {
+    int32 num = 1;
+}
+
+message FindMaxResponse {
+    int32 result = 1;
+}
+
 service CalculateService {
     rpc Calculate(CalculateRequest) returns (CalculateResponse) {};
 
     rpc ManyCalculate(ManyCalculateRequests) returns (stream ManyCalculateResponses) {};
+
+    rpc AverageCalculate(stream AvgCalculateRequests) returns (AvgCalculateResponse) {};
+
+    rpc FindMax(stream FindMaxRequests) returns (stream FindMaxResponse) {};
 }

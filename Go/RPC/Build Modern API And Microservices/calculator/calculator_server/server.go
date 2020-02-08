@@ -5,6 +5,7 @@ import (
 	"fmt"
 	"gRPC_Via_Udemy/calculator/calculatorpb"
 	"google.golang.org/grpc"
+	"io"
 	"log"
 	"net"
 )
@@ -38,6 +39,45 @@ func (*server) ManyCalculate(req *calculatorpb.ManyCalculateRequests,
 		}
 	}
 	return nil
+}
+
+func (*server) AverageCalculate(stream calculatorpb.CalculateService_AverageCalculateServer) error {
+	var temp, count float64 = 0, 0
+	for {
+		req, err := stream.Recv()
+		if err == io.EOF {
+			return stream.SendAndClose(&calculatorpb.AvgCalculateResponse{
+				Result:               temp / count,
+			})
+		}
+		if err != nil {
+			log.Printf("Error while reading client stream: %v", err)
+		}
+
+		temp += req.GetNum()
+		count++
+	}
+}
+
+func (*server) FindMax(stream calculatorpb.CalculateService_FindMaxServer) error {
+	var max int32 = 0
+	for {
+		req, err := stream.Recv()
+		if err == io.EOF {
+			return nil
+		}
+		if err != nil {
+			log.Fatalf("Error while reading client stream: %v", err)
+		}
+
+		if max < req.GetNum() {
+			max = req.GetNum()
+			if err := stream.Send(&calculatorpb.FindMaxResponse{Result:max}); err != nil {
+				log.Fatalf("Error while sending data to client: %v", err)
+				return err
+			}
+		}
+	}
 }
 
 func main() {

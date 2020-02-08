@@ -188,11 +188,171 @@ func (m *ManyCalculateResponses) GetResult() int32 {
 	return 0
 }
 
+type AvgCalculateRequests struct {
+	Num                  float64  `protobuf:"fixed64,1,opt,name=num,proto3" json:"num,omitempty"`
+	XXX_NoUnkeyedLiteral struct{} `json:"-"`
+	XXX_unrecognized     []byte   `json:"-"`
+	XXX_sizecache        int32    `json:"-"`
+}
+
+func (m *AvgCalculateRequests) Reset()         { *m = AvgCalculateRequests{} }
+func (m *AvgCalculateRequests) String() string { return proto.CompactTextString(m) }
+func (*AvgCalculateRequests) ProtoMessage()    {}
+func (*AvgCalculateRequests) Descriptor() ([]byte, []int) {
+	return fileDescriptor_7f42938f8c8365cf, []int{4}
+}
+
+func (m *AvgCalculateRequests) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_AvgCalculateRequests.Unmarshal(m, b)
+}
+func (m *AvgCalculateRequests) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_AvgCalculateRequests.Marshal(b, m, deterministic)
+}
+func (m *AvgCalculateRequests) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_AvgCalculateRequests.Merge(m, src)
+}
+func (m *AvgCalculateRequests) XXX_Size() int {
+	return xxx_messageInfo_AvgCalculateRequests.Size(m)
+}
+func (m *AvgCalculateRequests) XXX_DiscardUnknown() {
+	xxx_messageInfo_AvgCalculateRequests.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_AvgCalculateRequests proto.InternalMessageInfo
+
+func (m *AvgCalculateRequests) GetNum() float64 {
+	if m != nil {
+		return m.Num
+	}
+	return 0
+}
+
+type AvgCalculateResponse struct {
+	Result               float64  `protobuf:"fixed64,1,opt,name=result,proto3" json:"result,omitempty"`
+	XXX_NoUnkeyedLiteral struct{} `json:"-"`
+	XXX_unrecognized     []byte   `json:"-"`
+	XXX_sizecache        int32    `json:"-"`
+}
+
+func (m *AvgCalculateResponse) Reset()         { *m = AvgCalculateResponse{} }
+func (m *AvgCalculateResponse) String() string { return proto.CompactTextString(m) }
+func (*AvgCalculateResponse) ProtoMessage()    {}
+func (*AvgCalculateResponse) Descriptor() ([]byte, []int) {
+	return fileDescriptor_7f42938f8c8365cf, []int{5}
+}
+
+func (m *AvgCalculateResponse) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_AvgCalculateResponse.Unmarshal(m, b)
+}
+func (m *AvgCalculateResponse) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_AvgCalculateResponse.Marshal(b, m, deterministic)
+}
+func (m *AvgCalculateResponse) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_AvgCalculateResponse.Merge(m, src)
+}
+func (m *AvgCalculateResponse) XXX_Size() int {
+	return xxx_messageInfo_AvgCalculateResponse.Size(m)
+}
+func (m *AvgCalculateResponse) XXX_DiscardUnknown() {
+	xxx_messageInfo_AvgCalculateResponse.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_AvgCalculateResponse proto.InternalMessageInfo
+
+func (m *AvgCalculateResponse) GetResult() float64 {
+	if m != nil {
+		return m.Result
+	}
+	return 0
+}
+
+type FindMaxRequests struct {
+	Num                  int32    `protobuf:"varint,1,opt,name=num,proto3" json:"num,omitempty"`
+	XXX_NoUnkeyedLiteral struct{} `json:"-"`
+	XXX_unrecognized     []byte   `json:"-"`
+	XXX_sizecache        int32    `json:"-"`
+}
+
+func (m *FindMaxRequests) Reset()         { *m = FindMaxRequests{} }
+func (m *FindMaxRequests) String() string { return proto.CompactTextString(m) }
+func (*FindMaxRequests) ProtoMessage()    {}
+func (*FindMaxRequests) Descriptor() ([]byte, []int) {
+	return fileDescriptor_7f42938f8c8365cf, []int{6}
+}
+
+func (m *FindMaxRequests) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_FindMaxRequests.Unmarshal(m, b)
+}
+func (m *FindMaxRequests) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_FindMaxRequests.Marshal(b, m, deterministic)
+}
+func (m *FindMaxRequests) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_FindMaxRequests.Merge(m, src)
+}
+func (m *FindMaxRequests) XXX_Size() int {
+	return xxx_messageInfo_FindMaxRequests.Size(m)
+}
+func (m *FindMaxRequests) XXX_DiscardUnknown() {
+	xxx_messageInfo_FindMaxRequests.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_FindMaxRequests proto.InternalMessageInfo
+
+func (m *FindMaxRequests) GetNum() int32 {
+	if m != nil {
+		return m.Num
+	}
+	return 0
+}
+
+type FindMaxResponse struct {
+	Result               int32    `protobuf:"varint,1,opt,name=result,proto3" json:"result,omitempty"`
+	XXX_NoUnkeyedLiteral struct{} `json:"-"`
+	XXX_unrecognized     []byte   `json:"-"`
+	XXX_sizecache        int32    `json:"-"`
+}
+
+func (m *FindMaxResponse) Reset()         { *m = FindMaxResponse{} }
+func (m *FindMaxResponse) String() string { return proto.CompactTextString(m) }
+func (*FindMaxResponse) ProtoMessage()    {}
+func (*FindMaxResponse) Descriptor() ([]byte, []int) {
+	return fileDescriptor_7f42938f8c8365cf, []int{7}
+}
+
+func (m *FindMaxResponse) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_FindMaxResponse.Unmarshal(m, b)
+}
+func (m *FindMaxResponse) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_FindMaxResponse.Marshal(b, m, deterministic)
+}
+func (m *FindMaxResponse) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_FindMaxResponse.Merge(m, src)
+}
+func (m *FindMaxResponse) XXX_Size() int {
+	return xxx_messageInfo_FindMaxResponse.Size(m)
+}
+func (m *FindMaxResponse) XXX_DiscardUnknown() {
+	xxx_messageInfo_FindMaxResponse.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_FindMaxResponse proto.InternalMessageInfo
+
+func (m *FindMaxResponse) GetResult() int32 {
+	if m != nil {
+		return m.Result
+	}
+	return 0
+}
+
 func init() {
 	proto.RegisterType((*CalculateRequest)(nil), "calculator.CalculateRequest")
 	proto.RegisterType((*CalculateResponse)(nil), "calculator.CalculateResponse")
 	proto.RegisterType((*ManyCalculateRequests)(nil), "calculator.ManyCalculateRequests")
 	proto.RegisterType((*ManyCalculateResponses)(nil), "calculator.ManyCalculateResponses")
+	proto.RegisterType((*AvgCalculateRequests)(nil), "calculator.AvgCalculateRequests")
+	proto.RegisterType((*AvgCalculateResponse)(nil), "calculator.AvgCalculateResponse")
+	proto.RegisterType((*FindMaxRequests)(nil), "calculator.FindMaxRequests")
+	proto.RegisterType((*FindMaxResponse)(nil), "calculator.FindMaxResponse")
 }
 
 func init() {
@@ -200,22 +360,27 @@ func init() {
 }
 
 var fileDescriptor_7f42938f8c8365cf = []byte{
-	// 226 bytes of a gzipped FileDescriptorProto
-	0x1f, 0x8b, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02, 0xff, 0xe2, 0xd2, 0x48, 0x4e, 0xcc, 0x49,
-	0x2e, 0xcd, 0x49, 0x2c, 0xc9, 0x2f, 0xd2, 0x47, 0x30, 0x0b, 0x92, 0x90, 0x38, 0x7a, 0x05, 0x45,
-	0xf9, 0x25, 0xf9, 0x42, 0x5c, 0x08, 0x11, 0x25, 0x1f, 0x2e, 0x01, 0x67, 0x28, 0x2f, 0x35, 0x28,
-	0xb5, 0xb0, 0x34, 0xb5, 0xb8, 0x44, 0x48, 0x8a, 0x8b, 0x23, 0x2d, 0xb3, 0xa8, 0xb8, 0xc4, 0xaf,
-	0x34, 0x57, 0x82, 0x51, 0x81, 0x51, 0x83, 0x35, 0x08, 0xce, 0x17, 0x92, 0xe1, 0xe2, 0x2c, 0x4e,
-	0x4d, 0xce, 0xcf, 0x4b, 0x01, 0x49, 0x32, 0x81, 0x25, 0x11, 0x02, 0x4a, 0xda, 0x5c, 0x82, 0x48,
-	0xa6, 0x15, 0x17, 0xe4, 0xe7, 0x15, 0xa7, 0x0a, 0x89, 0x71, 0xb1, 0x15, 0xa5, 0x16, 0x97, 0xe6,
-	0x94, 0x40, 0x0d, 0x83, 0xf2, 0x94, 0x8c, 0xb9, 0x44, 0x7d, 0x13, 0xf3, 0x2a, 0xd1, 0xad, 0x2f,
-	0xc6, 0x67, 0xbf, 0x92, 0x01, 0x97, 0x18, 0x9a, 0x26, 0x88, 0x2d, 0xc5, 0xb8, 0xac, 0x31, 0xda,
-	0xc5, 0x88, 0xe4, 0xc5, 0xe0, 0xd4, 0xa2, 0xb2, 0xcc, 0xe4, 0x54, 0x21, 0x2f, 0x2e, 0x4e, 0xb8,
-	0x98, 0x90, 0x8c, 0x1e, 0x52, 0x10, 0xa1, 0x3b, 0x47, 0x4a, 0x16, 0x87, 0x2c, 0xc4, 0x5e, 0x25,
-	0x06, 0xa1, 0x28, 0x2e, 0x5e, 0x14, 0x27, 0x09, 0x29, 0x22, 0xeb, 0xc0, 0xea, 0x45, 0x29, 0x25,
-	0x3c, 0x4a, 0xa0, 0x1e, 0x52, 0x62, 0x30, 0x60, 0x74, 0xe2, 0x8b, 0xe2, 0x41, 0x8e, 0xcb, 0x24,
-	0x36, 0x70, 0x0c, 0x1a, 0x03, 0x02, 0x00, 0x00, 0xff, 0xff, 0xd2, 0xfa, 0xed, 0x4f, 0xed, 0x01,
-	0x00, 0x00,
+	// 316 bytes of a gzipped FileDescriptorProto
+	0x1f, 0x8b, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02, 0xff, 0x7c, 0x53, 0xdd, 0x4e, 0x83, 0x30,
+	0x18, 0x5d, 0x67, 0x36, 0xdd, 0x17, 0x7f, 0xf0, 0x8b, 0x2e, 0x06, 0x67, 0x32, 0xeb, 0x0d, 0xc6,
+	0x04, 0x89, 0x7b, 0x82, 0x69, 0x62, 0xa2, 0x71, 0x5e, 0xe0, 0x1d, 0x77, 0x8c, 0xd5, 0x85, 0x04,
+	0x01, 0x5b, 0x20, 0xfa, 0xb8, 0xbe, 0x89, 0xd9, 0xa8, 0x50, 0x59, 0xc7, 0x5d, 0xbf, 0x9f, 0x73,
+	0x4e, 0x7b, 0x4e, 0x0a, 0x56, 0xe0, 0x47, 0x41, 0x1e, 0xf9, 0x59, 0xc2, 0x6f, 0xeb, 0x63, 0x3a,
+	0x57, 0x0a, 0x3b, 0xe5, 0x49, 0x96, 0x20, 0xd4, 0x1d, 0xfa, 0x02, 0xc6, 0x83, 0xac, 0x98, 0xcb,
+	0x3e, 0x73, 0x26, 0x32, 0x34, 0x61, 0xef, 0x3d, 0xe4, 0x22, 0x7b, 0xcd, 0x3f, 0xce, 0xc8, 0x98,
+	0x58, 0x3d, 0xb7, 0xaa, 0x71, 0x04, 0x03, 0xc1, 0x82, 0x24, 0x5e, 0xac, 0x86, 0xdd, 0xf5, 0xb0,
+	0x6e, 0xd0, 0x1b, 0x38, 0x56, 0xd8, 0x44, 0x9a, 0xc4, 0x82, 0xe1, 0x10, 0xfa, 0x9c, 0x89, 0x3c,
+	0xca, 0x24, 0x99, 0xac, 0xe8, 0x04, 0x4e, 0x67, 0x7e, 0xfc, 0xdd, 0x94, 0x17, 0x6d, 0xfa, 0xd4,
+	0x81, 0x61, 0x03, 0x54, 0xaa, 0x88, 0xad, 0x32, 0x16, 0x9c, 0x4c, 0x8b, 0xe5, 0xa6, 0x8a, 0x01,
+	0x3b, 0xb1, 0x14, 0x20, 0xee, 0xea, 0x48, 0xed, 0xe6, 0xa6, 0xf6, 0x01, 0xa4, 0x62, 0xbe, 0x82,
+	0xa3, 0xc7, 0x30, 0x5e, 0xcc, 0xfc, 0x2f, 0x1d, 0x69, 0xaf, 0x24, 0xbd, 0x56, 0x96, 0xda, 0x0d,
+	0xb9, 0xfb, 0xe9, 0x2a, 0x61, 0xbc, 0x31, 0x5e, 0x84, 0x01, 0xc3, 0x67, 0x18, 0x54, 0x3d, 0x1c,
+	0xd9, 0x4a, 0x98, 0xcd, 0x27, 0x99, 0x17, 0x5b, 0xa6, 0xa5, 0x2c, 0xed, 0xa0, 0x07, 0x07, 0xff,
+	0xcc, 0xc3, 0x4b, 0x15, 0xa1, 0x0d, 0xc3, 0xa4, 0x2d, 0x2b, 0xd2, 0x7a, 0xda, 0x71, 0x08, 0x7a,
+	0x60, 0x4c, 0x0b, 0xc6, 0xfd, 0x25, 0xab, 0xe9, 0xc7, 0x2a, 0x56, 0x17, 0x82, 0xd9, 0xb2, 0xf1,
+	0x77, 0x6b, 0x8b, 0xe0, 0x13, 0xec, 0x4a, 0x0f, 0xf1, 0x5c, 0x05, 0x34, 0xdc, 0x37, 0xf5, 0xc3,
+	0x9a, 0xc8, 0x21, 0xf7, 0x87, 0xde, 0xbe, 0xfa, 0x39, 0xe6, 0xfd, 0xf5, 0x97, 0x98, 0xfc, 0x06,
+	0x00, 0x00, 0xff, 0xff, 0x6b, 0xd0, 0xb1, 0x33, 0x3e, 0x03, 0x00, 0x00,
 }
 
 // Reference imports to suppress errors if they are not otherwise used.
@@ -232,6 +397,8 @@ const _ = grpc.SupportPackageIsVersion6
 type CalculateServiceClient interface {
 	Calculate(ctx context.Context, in *CalculateRequest, opts ...grpc.CallOption) (*CalculateResponse, error)
 	ManyCalculate(ctx context.Context, in *ManyCalculateRequests, opts ...grpc.CallOption) (CalculateService_ManyCalculateClient, error)
+	AverageCalculate(ctx context.Context, opts ...grpc.CallOption) (CalculateService_AverageCalculateClient, error)
+	FindMax(ctx context.Context, opts ...grpc.CallOption) (CalculateService_FindMaxClient, error)
 }
 
 type calculateServiceClient struct {
@@ -283,10 +450,77 @@ func (x *calculateServiceManyCalculateClient) Recv() (*ManyCalculateResponses, e
 	return m, nil
 }
 
+func (c *calculateServiceClient) AverageCalculate(ctx context.Context, opts ...grpc.CallOption) (CalculateService_AverageCalculateClient, error) {
+	stream, err := c.cc.NewStream(ctx, &_CalculateService_serviceDesc.Streams[1], "/calculator.CalculateService/AverageCalculate", opts...)
+	if err != nil {
+		return nil, err
+	}
+	x := &calculateServiceAverageCalculateClient{stream}
+	return x, nil
+}
+
+type CalculateService_AverageCalculateClient interface {
+	Send(*AvgCalculateRequests) error
+	CloseAndRecv() (*AvgCalculateResponse, error)
+	grpc.ClientStream
+}
+
+type calculateServiceAverageCalculateClient struct {
+	grpc.ClientStream
+}
+
+func (x *calculateServiceAverageCalculateClient) Send(m *AvgCalculateRequests) error {
+	return x.ClientStream.SendMsg(m)
+}
+
+func (x *calculateServiceAverageCalculateClient) CloseAndRecv() (*AvgCalculateResponse, error) {
+	if err := x.ClientStream.CloseSend(); err != nil {
+		return nil, err
+	}
+	m := new(AvgCalculateResponse)
+	if err := x.ClientStream.RecvMsg(m); err != nil {
+		return nil, err
+	}
+	return m, nil
+}
+
+func (c *calculateServiceClient) FindMax(ctx context.Context, opts ...grpc.CallOption) (CalculateService_FindMaxClient, error) {
+	stream, err := c.cc.NewStream(ctx, &_CalculateService_serviceDesc.Streams[2], "/calculator.CalculateService/FindMax", opts...)
+	if err != nil {
+		return nil, err
+	}
+	x := &calculateServiceFindMaxClient{stream}
+	return x, nil
+}
+
+type CalculateService_FindMaxClient interface {
+	Send(*FindMaxRequests) error
+	Recv() (*FindMaxResponse, error)
+	grpc.ClientStream
+}
+
+type calculateServiceFindMaxClient struct {
+	grpc.ClientStream
+}
+
+func (x *calculateServiceFindMaxClient) Send(m *FindMaxRequests) error {
+	return x.ClientStream.SendMsg(m)
+}
+
+func (x *calculateServiceFindMaxClient) Recv() (*FindMaxResponse, error) {
+	m := new(FindMaxResponse)
+	if err := x.ClientStream.RecvMsg(m); err != nil {
+		return nil, err
+	}
+	return m, nil
+}
+
 // CalculateServiceServer is the server API for CalculateService service.
 type CalculateServiceServer interface {
 	Calculate(context.Context, *CalculateRequest) (*CalculateResponse, error)
 	ManyCalculate(*ManyCalculateRequests, CalculateService_ManyCalculateServer) error
+	AverageCalculate(CalculateService_AverageCalculateServer) error
+	FindMax(CalculateService_FindMaxServer) error
 }
 
 // UnimplementedCalculateServiceServer can be embedded to have forward compatible implementations.
@@ -298,6 +532,12 @@ func (*UnimplementedCalculateServiceServer) Calculate(ctx context.Context, req *
 }
 func (*UnimplementedCalculateServiceServer) ManyCalculate(req *ManyCalculateRequests, srv CalculateService_ManyCalculateServer) error {
 	return status.Errorf(codes.Unimplemented, "method ManyCalculate not implemented")
+}
+func (*UnimplementedCalculateServiceServer) AverageCalculate(srv CalculateService_AverageCalculateServer) error {
+	return status.Errorf(codes.Unimplemented, "method AverageCalculate not implemented")
+}
+func (*UnimplementedCalculateServiceServer) FindMax(srv CalculateService_FindMaxServer) error {
+	return status.Errorf(codes.Unimplemented, "method FindMax not implemented")
 }
 
 func RegisterCalculateServiceServer(s *grpc.Server, srv CalculateServiceServer) {
@@ -343,6 +583,58 @@ func (x *calculateServiceManyCalculateServer) Send(m *ManyCalculateResponses) er
 	return x.ServerStream.SendMsg(m)
 }
 
+func _CalculateService_AverageCalculate_Handler(srv interface{}, stream grpc.ServerStream) error {
+	return srv.(CalculateServiceServer).AverageCalculate(&calculateServiceAverageCalculateServer{stream})
+}
+
+type CalculateService_AverageCalculateServer interface {
+	SendAndClose(*AvgCalculateResponse) error
+	Recv() (*AvgCalculateRequests, error)
+	grpc.ServerStream
+}
+
+type calculateServiceAverageCalculateServer struct {
+	grpc.ServerStream
+}
+
+func (x *calculateServiceAverageCalculateServer) SendAndClose(m *AvgCalculateResponse) error {
+	return x.ServerStream.SendMsg(m)
+}
+
+func (x *calculateServiceAverageCalculateServer) Recv() (*AvgCalculateRequests, error) {
+	m := new(AvgCalculateRequests)
+	if err := x.ServerStream.RecvMsg(m); err != nil {
+		return nil, err
+	}
+	return m, nil
+}
+
+func _CalculateService_FindMax_Handler(srv interface{}, stream grpc.ServerStream) error {
+	return srv.(CalculateServiceServer).FindMax(&calculateServiceFindMaxServer{stream})
+}
+
+type CalculateService_FindMaxServer interface {
+	Send(*FindMaxResponse) error
+	Recv() (*FindMaxRequests, error)
+	grpc.ServerStream
+}
+
+type calculateServiceFindMaxServer struct {
+	grpc.ServerStream
+}
+
+func (x *calculateServiceFindMaxServer) Send(m *FindMaxResponse) error {
+	return x.ServerStream.SendMsg(m)
+}
+
+func (x *calculateServiceFindMaxServer) Recv() (*FindMaxRequests, error) {
+	m := new(FindMaxRequests)
+	if err := x.ServerStream.RecvMsg(m); err != nil {
+		return nil, err
+	}
+	return m, nil
+}
+
 var _CalculateService_serviceDesc = grpc.ServiceDesc{
 	ServiceName: "calculator.CalculateService",
 	HandlerType: (*CalculateServiceServer)(nil),
@@ -357,6 +649,17 @@ var _CalculateService_serviceDesc = grpc.ServiceDesc{
 			StreamName:    "ManyCalculate",
 			Handler:       _CalculateService_ManyCalculate_Handler,
 			ServerStreams: true,
+		},
+		{
+			StreamName:    "AverageCalculate",
+			Handler:       _CalculateService_AverageCalculate_Handler,
+			ClientStreams: true,
+		},
+		{
+			StreamName:    "FindMax",
+			Handler:       _CalculateService_FindMax_Handler,
+			ServerStreams: true,
+			ClientStreams: true,
 		},
 	},
 	Metadata: "calculator/calculatorpb/calculator.proto",
