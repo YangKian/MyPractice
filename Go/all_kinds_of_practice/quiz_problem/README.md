@@ -3,7 +3,7 @@ csv 文件中存储了问题和答案，用户通过命令行读入问题，并�
 
 ### 快速开始
 在当前文件夹下输入以下命令：
-`go build . && quiz_problem`
+`go build . && ./quiz_problem`
 
 参数补充：
 
