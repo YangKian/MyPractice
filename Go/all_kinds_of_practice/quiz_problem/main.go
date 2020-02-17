@@ -31,19 +31,19 @@ func main() {
 	timer := time.NewTimer(time.Duration(*timeLimit) * time.Second)
 	answerChannel := make(chan string)
 	wrong := []problem{}
-	Loop:
+Loop:
 	for i, p := range problems {
-		fmt.Printf("Problem #%d: %s = \n", i + 1, p.question)
+		fmt.Printf("Problem #%d: %s = \n", i+1, p.question)
 		go func() {
-			var answer  string
+			var answer string
 			fmt.Scan(&answer)
 			answerChannel <- answer
 		}()
 
 		select {
-		case <- timer.C:
+		case <-timer.C:
 			break Loop //这里使用跳出语句时为了保证不管是超时还是完成了所有遍历最后的print都能被执行
-		case answer := <- answerChannel:
+		case answer := <-answerChannel:
 			if answer == p.correctAnswer {
 				count++
 			} else {
@@ -64,7 +64,7 @@ func main() {
 type problem struct {
 	question      string
 	correctAnswer string
-	youAnswer       string
+	youAnswer     string
 }
 
 func parseLines(lines [][]string) []problem {
