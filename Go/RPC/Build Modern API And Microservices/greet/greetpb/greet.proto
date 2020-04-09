@@ -63,5 +63,11 @@ service GreetService{
 
     //Unary with DeadLine
     rpc GreetWithDeadline(GreetWithDeadlineRequest) returns (GreetWithDeadlineResponse) {};
+
+    //Unary RPC with Metadata
+    rpc GreetWithMetadata(GreetRequest) returns (GreetResponse) {};
+
+    //BiDi Steaming with Metadata
+    rpc GreetEveryoneWithMetadata(stream GreetEveryoneRequest) returns (stream GreetEveryoneResponse) {}
 }
 
