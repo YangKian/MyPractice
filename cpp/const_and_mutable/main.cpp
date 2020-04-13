@@ -6,7 +6,7 @@ private:
     int* p1, *p2; // 注意声明两个指针变量时，两个变量前都要加 *，否则没加的那个不是指针变量
     mutable int var; // 使用 mutable 关键字声明该变量是可以被修改的
 public:
-    // const_and_mutable 用在类的方法中，放在方法名之后，声明该方法是只读的，不能通过该方法去修改类的成员变量
+    // const 用在类的方法中，放在方法名之后，声明该方法是只读的，不能通过该方法去修改类的成员变量
     int GetX() const {
         // m_X = 2; 错误用法
         return m_X;
@@ -16,15 +16,15 @@ public:
         return m_Y;
     }
 
-    // 对于只读函数中还需要修改类变量的情况，在需要修改的类变量前加上 mutable 关键字-p-p
+    // 对于只读函数中还需要修改类变量的情况，在需要修改的类变量前加上 mutable 关键字
     int Get() const {
         var = 2;
         return m_X;
     }
 };
 
-// 在形参前加 const_and_mutable，说明该形参是不可变的
-// const_and_mutable Entity& e 等价于 const_and_mutable Entity * e，即不能修改值，但是可以修改指向
+// 在形参前加 const，说明该形参是不可变的
+// const Entity& e 等价于 const Entity * e，即不能修改值，但是可以修改指向
 void PrintClass(const Entity& e) {
     std::cout << e.GetX() << std::endl;
 }
