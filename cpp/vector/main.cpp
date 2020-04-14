@@ -3,6 +3,12 @@
 
 struct Vertex {
     float x, y, z;
+
+    Vertex(float a, float b, float c) : x(a), y(b), z(c) {}
+
+    Vertex(const Vertex& vertex) : x(vertex.x), y(vertex.y), z(vertex.z) {
+        std::cout << "Copied now !" << std::endl;
+    }
 };
 
 std::ostream& operator<<(std::ostream& stream, const Vertex& vertex) {
@@ -15,8 +21,15 @@ void Function(const std::vector<Vertex>& v) {}
 
 int main() {
     std::vector<Vertex> vertices;
-    vertices.push_back({1, 2, 3});
-    vertices.push_back({2, 4, 7});
+    vertices.reserve(3); // 优化一：在知晓vector大小的情况下，提前为 vector 分配空间，类似于go中的 make([]int, 0, 3)
+
+    // 优化二：使用 .emplace_back() 替换 .push_back()
+    // push_back()：在外部调用元素类型的构造器创建实例，然后将实例拷贝到 vector 中
+    // vertices.push_back(Vertex(1, 2, 3)) 拷贝构造器会触发
+    // emplace_back()：将参数传递给元素类型的构造器，然后在 vector 管理的内存空间中直接构造对象
+    vertices.emplace_back(1, 2, 3);
+    vertices.emplace_back(4, 5, 6);
+    vertices.emplace_back(7, 8, 9);
 
     for (int i = 0; i < vertices.size(); i++) {
         std::cout << vertices[i] << std::endl;
