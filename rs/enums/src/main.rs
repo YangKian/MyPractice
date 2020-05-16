@@ -109,3 +109,38 @@ fn match_one() {
         count += 1;
     }
 }
+
+// if let 模式可以是多个
+fn multi_if_let() {
+    let mut count = 0;
+    if let Coin::Quarter(state) = coin {
+        println!("State quarter from {:?}!", state);
+    } else if let Coin::Dime = coin {
+        println!("Dime");
+    } else {
+        count += 1
+    }
+}
+
+fn init_option() {
+    // 注意，这里只用 let mut numbers: [Option<u16>; 5] 会报错，没有初始化
+    let mut numbers: [Option<u16>; 5] = Default::default();
+    for iter in 0..5 {
+        let number_to_add: u16 = {
+            ((iter * 5) + 2) / (4 * 16)
+        };
+
+        numbers[iter as usize] = Some(number_to_add);
+    }
+}
+
+fn example_for_while_let() {
+    let mut optional_values_vec: Vec<Option<i8>> = Vec::new();
+    for x in 1..10 {
+        optional_values_vec.push(Some(x));
+    }
+
+    while let Some(value) = optional_values_vec.pop() {
+        println!("current value: {}", value.unwrap());
+    }
+}

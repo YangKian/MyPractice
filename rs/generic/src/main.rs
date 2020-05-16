@@ -3,6 +3,10 @@ struct Point<T, U> {
     y: U,
 }
 
+fn print_type_name<T>(_val: &T) {
+    println!("{}", std::any::type_name::<T>());
+}
+
 // the generic parameters T and U are declared after impl, because they go with the struct
 // definition. The generic parameters V and W are declared after fn mixup, because they’re
 // only relevant to the method.
@@ -57,4 +61,13 @@ fn main() {
     let integer = Point{x: 5, y: 6};
     let float = Point{x: 1.0, y: 3.0};
     let mix_type = Point{x: 9, y: 3.0};
+
+    // Generic functions can be thought of as namespaces, containing an
+    // infinity of functions with different concrete types.
+    // 符号 ::<> 被称为 turbofish syntax
+    use std::any::type_name;
+    println!("{}", type_name::<i32>()); // prints "i32"
+    println!("{}", type_name::<(f64, char)>()); // prints "(f64, char)"
+
+    print_type_name(&integer)
 }

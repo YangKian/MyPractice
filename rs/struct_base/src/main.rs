@@ -40,4 +40,11 @@ fn main() {
     };
     println!("Can rect1 hold rect2? {}", rect1.can_hold(&rect2));
     println!("Can rect1 hold rect3? {}", rect1.can_hold(&rect3));
+
+    // 结构体的解构，解构不会导致所有权的转移
+    // 注意：解构时成员名不能变
+    let Rectangle{ width, height } = rect1;
+    println!("width: {}, height: {}", width, height);
+    let Rectangle{ width, ..} = rect1; // 使用 .. 来忽略掉不需要的值
+    println!("width: {}", width);
 }
