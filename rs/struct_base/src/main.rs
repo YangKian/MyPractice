@@ -5,6 +5,10 @@ struct Rectangle {
 }
 
 impl Rectangle {
+    // self 的三种形式分别代表不同的 ownership
+    // self - Value
+    // &self - shared reference
+    // &mut self - mutable reference
     fn area(&self) -> u32 {
         self.width * self.height
     }
