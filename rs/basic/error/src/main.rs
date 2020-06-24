@@ -1,3 +1,6 @@
+mod question_mark_main;
+mod error_test1;
+
 use std::fs::File;
 use std::io::ErrorKind;
 //以下导入方法等价于：

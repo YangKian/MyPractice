@@ -66,20 +66,20 @@ fn main() {
     generate_workout(simulated_user_specified_value, simulated_random_number);
 }
 
-/**
- Closures can capture values from their environment in three ways, which directly map to
- the three ways a function can take a parameter: taking ownership, borrowing mutably, and
- borrowing immutably. These are encoded in the three Fn traits as follows:
-
-    - FnOnce consumes the variables it captures from its enclosing scope, known as
-      the closure’s environment. To consume the captured variables, the closure must
-      take ownership of these variables and move them into the closure when it is
-      defined. The Once part of the name represents the fact that the closure can’t
-      take ownership of the same variables more than once, so it can be called only once.
-    - FnMut can change the environment because it mutably borrows values.
-    - Fn borrows values from the environment immutably.
-
- All closures implement FnOnce because they can all be called at least once.
- Closures that don’t move the captured variables also implement FnMut, and
- closures that don’t need mutable access to the captured variables also implement Fn.
-*/
+// /**
+//  Closures can capture values from their environment in three ways, which directly map to
+//  the three ways a function can take a parameter: taking ownership, borrowing mutably, and
+//  borrowing immutably. These are encoded in the three Fn traits as follows:
+//
+//     - FnOnce consumes the variables it captures from its enclosing scope, known as
+//       the closure’s environment. To consume the captured variables, the closure must
+//       take ownership of these variables and move them into the closure when it is
+//       defined. The Once part of the name represents the fact that the closure can’t
+//       take ownership of the same variables more than once, so it can be called only once.
+//     - FnMut can change the environment because it mutably borrows values.
+//     - Fn borrows values from the environment immutably.
+//
+//  All closures implement FnOnce because they can all be called at least once.
+//  Closures that don’t move the captured variables also implement FnMut, and
+//  closures that don’t need mutable access to the captured variables also implement Fn.
+// */
