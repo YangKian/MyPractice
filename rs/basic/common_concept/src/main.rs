@@ -1,16 +1,18 @@
 fn main() {
     // 元组：元组中的各元素类型可以不同
     let tup: (i32, f64, u8) = (500, 6.4, 1);
+    // 访问元组值的两种方式
+    // 模式解构
     let (x, y, z) = tup;
     println!("The value of y is: {}", y);
-
+    // 索引访问
     let five_hundred = tup.0;
     let one = tup.2;
 
     // 数组：数组中的各元素类型必须相同
     let a = [1, 2, 3, 4, 5];
     let b: [i32; 5] = [1, 2, 3, 4, 5];
-    let c = [3; 5]; // => [3, 3, 3, 3, 3]
+    let c = [3; 5]; // 创建一个每个元素都相同的数组 => [3, 3, 3, 3, 3]
 
     // 数组下标越界在编译时不会报错，但是运行时会报错
     let first = a[0];
@@ -53,6 +55,8 @@ fn if_statement() {
         println!("number is not divisible by 4, 3, or 2");
     }
 
+    // if 是一个表达式，所以可以将其赋值给变量
+    // if 的每个分支返回的值的类型必须相同
     let condition = true;
     let n = if condition { 5 } else { 6 }; // 注意两个 {} 中的值类型必须相同
     println!("The value of number is: {}", n);

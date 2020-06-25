@@ -1,3 +1,14 @@
+// rust 通过所有权系统来进行内存管理。
+// 所有权系统制定了一系列的规则，编译器在编译时会检查这些规则
+// 所有权系统的引入不会导致运行时速度变慢
+
+// 所有权规则：
+//  - Each value in Rust has a variable that's called its owner
+//  - There can only be one owner at a time
+//  - When the owner goes out of scope, the value will be dropped.
+
+// rust 垃圾回收的方式类似于 RAII（Resource Acquisition Is Initialization），当
+// 变量离开其作用域后，rust 会调用一个特殊的函数 drop，该函数会完成资源的释放
 fn main() {
     let s1 = gives_ownership();
 
