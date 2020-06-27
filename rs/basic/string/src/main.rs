@@ -1,7 +1,7 @@
 /*
  * rust 中的 string 有两种：
- *  - 标准库中的 String
- *  - core language 中的 str(string slice)，通常是 borrowed form：&str
+ *  - 标准库中的 String，是一个可变的，可增长的，拥有所有权的类型
+ *  - core language 中的 str(string slice)，通常是 borrowed form：&str，字符串的字面量属于该类型
  * 两种 string 都使用 UTF-8 编码
 */
 
@@ -25,8 +25,9 @@ fn main() {
     let s1 = String::from("Hello, ");
     let s2 = String::from("world!");
     // + 运算符连接两个字符串
-    // 注意此处 s1 的 ownership 被 move，无法再使用
+    // 注意此处 s1 的 ownership 被 move，无法再使用，s2 必须是引用类型
     // 这是由 fn add(self, s: &str) -> String {} 方法决定的，+ 运算符调用了 add 方法
+    // s2 的类型可以是 &String 或 &str，因为编译器会自动进行强制类型转换，将 &String 转为 &str
     /**
         although let s3 = s1 + &s2; looks like it will copy both strings and create a new one,
         this statement actually takes ownership of s1, appends a copy of the contents of s2,
@@ -39,7 +40,7 @@ fn main() {
     let s1 = String::from("tic");
     let s2 = String::from("tac");
     let s3 = String::from("toe");
-    let s = format!("{}-{}-{}", s1, s2, s3);
+    let s = format!("{}-{}-{}", s1, s2, s3); // 不会导致 s1, s2, s3 的所有权转移
 
     /**
      * rust 的 string 不支持 indexing

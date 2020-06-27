@@ -1,5 +1,5 @@
 fn main() {
-    let v: Vec<i32> = Vec::new();
+    let v: Vec<i32> = Vec::new(); // 注意要加入类型注解，说明该 vector 中存储的是什么类型的元素
     let v = vec![1, 2, 3]; // 使用宏 vec! 来创建一个初始化的 Vec<i32>
 
     // 增
@@ -9,7 +9,7 @@ fn main() {
     v.push(7);
     v.push(8);
 
-    // drop：退出作用域后，vector 被释放
+    // drop：退出作用域后，vector 被释放，其内部存储的元素也会被清理
     {
         let v = vec![1, 2, 3, 4];
     }
@@ -43,9 +43,10 @@ fn main() {
 
     let mut v = vec![100,32, 57];
     for i in &mut v {
-        *i += 50;
+        *i += 50; // 注意解引用
     }
 
+    // vector 只能存储相同类型的值
     // 使用枚举来存储不同变量
     enum SpreadsheetCell {
         Int(i32),

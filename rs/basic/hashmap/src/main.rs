@@ -38,11 +38,14 @@ fn main() {
     scores.insert(String::from("Red"), 10);
     scores.insert(String::from("Red"), 25);
     println!("{:?}", scores);
+
     // 只在键没有被赋值时插入值，即保留旧值
+    // .entry(key）用来检查哈希表中的 key 是否存在对应的值，返回的是一个 enum，称为 Entry
     // or_insert()：如果值存在，则返回该值的可变类型的引用，值不存在则为该键插入新的值
     scores.entry(String::from("Yellow")).or_insert(40);
     scores.entry(String::from("Black")).or_insert(40);
     println!("{:?}", scores);
+
     // 在旧值的基础上更新值
     let text = "hello world wonderful world";
     let mut map = HashMap::new();

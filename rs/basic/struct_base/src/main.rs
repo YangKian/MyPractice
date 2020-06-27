@@ -1,3 +1,5 @@
+mod basic;
+
 #[derive(Debug)]
 struct Rectangle {
     width: u32,
@@ -12,11 +14,13 @@ impl Rectangle {
     fn area(&self) -> u32 {
         self.width * self.height
     }
+
     fn can_hold(&self, other: &Rectangle) -> bool {
         self.width > other.width && self.height > other.height
     }
 
     // 关联函数，常用于类的构造函数，使用 :: 语法来调用关联函数
+    // 关联函数不是结构体的方法，它与结构体相关联，不作用于具体的结构体实例
     fn square(size: u32) -> Rectangle {
         Rectangle {
             width: size,

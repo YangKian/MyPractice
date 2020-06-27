@@ -1,4 +1,6 @@
+mod enums3;
 
+// 将数据直接附加到枚举变量上，实现了不同的枚举变量关联到不同的数据类型
 enum IpAddr {
     V4(u8, u8, u8, u8),
     V6(String),
@@ -31,6 +33,7 @@ fn value_in_cents(coin: Coin) -> u8 {
     }
 }
 
+// 使用 match 来处理 Option<T>
 fn plus_one(x: Option<i32>) -> Option<i32> {
     match x {
         None => None,
@@ -38,6 +41,7 @@ fn plus_one(x: Option<i32>) -> Option<i32> {
     }
 }
 
+#[derive(Debug)]
 enum Message {
     Move{x: i32, y: i32},
     Echo(String),
@@ -66,6 +70,7 @@ fn main() {
     let some_number = Some(5);
     let some_string = Some("a string");
     // 注意 let absent_number = None; 会报错
+    // 在使用 None 值时需要指明变量的类型：Option<T>
     let absent_number: Option<i32> = None;
 
     // 注意 T 和 Option<T> 是不同的类型，以下代码会报错：
@@ -101,7 +106,7 @@ fn match_some_case() {
 }
 
 // 如果只想匹配一个模式，使用 if let，可以加上一个 else 子句
-fn match_one() {
+fn match_one(coin: Coin) {
     let mut count = 0;
     if let Coin::Quarter(state) = coin {
         println!("State quarter from {:?}!", state);
@@ -111,7 +116,7 @@ fn match_one() {
 }
 
 // if let 模式可以是多个
-fn multi_if_let() {
+fn multi_if_let(coin: Coin) {
     let mut count = 0;
     if let Coin::Quarter(state) = coin {
         println!("State quarter from {:?}!", state);
@@ -124,23 +129,40 @@ fn multi_if_let() {
 
 fn init_option() {
     // 注意，这里只用 let mut numbers: [Option<u16>; 5] 会报错，没有初始化
-    let mut numbers: [Option<u16>; 5] = Default::default();
-    for iter in 0..5 {
+    // Default 是个 trait，Default::default() 返回一个类型的默认值
+    let mut numbers: [Option<u16>; 9] = Default::default();
+    for iter in 0..9 {
         let number_to_add: u16 = {
-            ((iter * 5) + 2) / (4 * 16)
+            ((iter * 5) + 2) / (2 * 16)
         };
 
         numbers[iter as usize] = Some(number_to_add);
     }
+    println!("numbers value: {:?}", numbers)
 }
 
 fn example_for_while_let() {
     let mut optional_values_vec: Vec<Option<i8>> = Vec::new();
-    for x in 1..10 {
+    for x in 0..10 {
         optional_values_vec.push(Some(x));
     }
 
     while let Some(value) = optional_values_vec.pop() {
         println!("current value: {}", value.unwrap());
+    }
+}
+
+#[cfg(test)]
+mod test {
+    use super::*;
+
+    #[test]
+    fn test_init_option() {
+        init_option()
+    }
+
+    #[test]
+    fn test_example_for_while_let() {
+        example_for_while_let()
     }
 }
