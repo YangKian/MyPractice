@@ -1,3 +1,5 @@
+mod main;
+
 #[derive(Debug)]
 pub struct StrSplit<'a, D> {
     remainder: Option<&'a str>,

@@ -1,10 +1,11 @@
+// rust 中使用泛型不会带来运行时开销，因为在编译阶段，rust 通过 monomorphization 用实际类型填充了泛型参数
+// 的部分
+
+use std::fmt::Display;
+
 struct Point<T, U> {
     x: T,
     y: U,
-}
-
-fn print_type_name<T>(_val: &T) {
-    println!("{}", std::any::type_name::<T>());
 }
 
 // the generic parameters T and U are declared after impl, because they go with the struct
@@ -45,6 +46,49 @@ fn largest1<T: PartialOrd>(list: &[T]) -> &T {
         }
     }
     largest
+}
+
+// Using Trait Bounds to Conditionally Implement Methods
+struct Pair<T> {
+    x: T,
+    y: T,
+}
+
+// 所有的 Pair<T> 类型都实现了 new 方法
+impl<T> Pair<T> {
+    fn new(x: T, y: T) -> Self {
+        Self {
+            x,
+            y,
+        }
+    }
+}
+
+// 只有那些为 T 类型实现了 PartialOrd 和 Display trait 的 Pair<T> 类型才会
+// 实现 cmp_display 方法
+impl<T: Display + PartialOrd> Pair<T> {
+    fn cmp_display(&self) {
+        if self.x >= self.y {
+            println!("The largest member is x = {}", self.x);
+        } else {
+            println!("The largest member is y = {}", self.y);
+        }
+    }
+}
+
+// 也可以为任意实现了其他 trait 的类型 T 有条件的实现某个 trait
+// Implementations of a trait on any type that satisfies the trait bounds
+// are called blanket implementations.
+// 如：标准库中为任意实现了 Display trait 的类型实现了 ToString trait
+// impl<T: Display> ToString for T {
+//     fn to_string(&self) -> String {
+//         ...
+//     }
+// }
+// 由此，所有实现了 Display trait 的类型都可以调用 to_string() 方法
+
+fn print_type_name<T>(_val: &T) {
+    println!("{}", std::any::type_name::<T>());
 }
 
 fn main() {
