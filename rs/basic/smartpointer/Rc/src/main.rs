@@ -1,3 +1,14 @@
+
+/**
+    Rc<T> 用于 multiple ownership 的场景，Rc<T> 是引用计数的抽象
+     - Rc<T> 通过追踪某个值的引用的数量来决定该值是否依旧在被使用
+     - We use the Rc<T> type when we want to allocate some data on the heap for multiple
+       parts of our program to read and we can’t determine at compile time which part
+       will finish using the data last.
+    Rc<T> 只能用在单线程场景中
+    Rc<T> 只能用于不可变引用的引用计数
+*/
+
 use crate::List::{Cons, Nil};
 use std::rc::Rc;
 
@@ -20,6 +31,7 @@ fn main() {
 }
 
 fn test_count() {
+    // 当 Rc<T> 的值离开其作用域时，Drop trait 会自动实现减少引用计数
     let a = Rc::new(Cons(5, Rc::new(Cons(10, Rc::new(Nil)))));
     println!("count after creating a = {}", Rc::strong_count(&a));
     let b = Cons(3, Rc::clone(&a));

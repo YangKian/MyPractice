@@ -32,7 +32,7 @@ impl<T> List<T> {
 
     pub fn tail(&self) -> List<T> {
         // List{head: self.head.as_ref().map(|node| node.next.clone())}
-        // 用 map 会报错：expected struct `std::rc::Rc`, found enum `std::option::Option`
+        // 用 map 会报错：expected struct `std::Rc::Rc`, found enum `std::option::Option`
 
         // and_then()：Returns [`None`] if the option is [`None`], otherwise calls `f` with the
         // wrapped value and returns the result.

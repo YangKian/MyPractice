@@ -14,13 +14,15 @@ fn iterator_demonstration() {
     assert_eq!(v1_iter.next(), Some(&2));
     assert_eq!(v1_iter.next(), Some(&3));
     assert_eq!(v1_iter.next(), None);
+    println!("{:?}", v1); // [1,2,3]
+    println!("{:?}", v1_iter) // Iter([])
 }
 
 #[test]
 fn iterator_sum() {
     let v1 = vec![1, 2, 3];
     let v1_iter = v1.iter();
-    let total: i32 = v1_iter.sum();
+    let total: i32 = v1_iter.sum(); // sum 会获取 v1_iter 的所有权，所以 sum 之后 v1_iter 不能再使用
     assert_eq!(total, 6);
 }
 
@@ -48,11 +50,11 @@ impl Iterator for Counter {
     }
 }
 
-#[test]
 //take the values produced by an instance of Counter, pair them with values
 // produced by another Counter instance after skipping the first value, multiply
 // each pair together, keep only those results that are divisible by 3, and
 // add all the resulting values together
+#[test]
 fn using_other_iterator_trait_methods() {
     let sum: u32 = Counter::new()
         // zip() 生成了四个pair,最后一个pair（5，None）不会被生成
@@ -71,6 +73,10 @@ struct Shoe {
 }
 
 fn shoes_in_my_size(shoes: Vec<Shoe>, shoe_size: u32) -> Vec<Shoe> {
+    // .iter()：Returns an iterator over the slice. 函数签名为：pub fn iter(&self) -> Iter<'_, T>
+    //  - .iter() 获取的是引用，不会获取原 vec 的所有权
+    // .into_iter()：Creates a consuming iterator，函数签名为：fn into_iter(self) -> IntoIter<T>
+    //  - .into_iter() 会获取 vec 的所有权，该方法调用后 vec 不可用
     shoes.into_iter().filter(|s| s.size == shoe_size).collect()
 }
 
