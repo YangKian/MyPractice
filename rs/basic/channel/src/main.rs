@@ -10,11 +10,12 @@ fn main() {
     thread::spawn(move || {
         let val = String::from("hi");
         // send 返回一个 Result，如果接收端已经关闭，则返回 error
+        // send 会获取发送值的所有权，send 调用之后，不能再调用 val
         tx.send(val).unwrap();
     });
 
     // 接收端有两个常用方法：recv 和 try_recv
-    // recv：阻塞方法，返回值是 Result
+    // recv：阻塞方法，返回值是 Result，如果发送端已经关闭，则返回 error
     // try_recv：非阻塞方法，立刻返回 Result，err 表示当前没有任何消息
     let received = rx.recv().unwrap();
     println!("Got: {}", received);
@@ -55,6 +56,7 @@ fn multiple_producer() {
         }
     });
 
+    // 将接收端看成是一个迭代器，当通道关闭后，循环会退出，类似于 go 中 channel 的用法
     for received in rx {
         println!("Got: {}", received);
     }
