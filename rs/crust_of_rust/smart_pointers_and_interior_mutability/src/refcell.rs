@@ -9,6 +9,9 @@ enum RefState {
 
 pub struct RefCell<T> {
     value: UnsafeCell<T>,
+    // 使用 Cell<T> 封装 RefState 的原因：在 borrow 和 borrow_mut 两个 API 中，
+    // 传入的都是不可变参数 &self, 然而代码的逻辑要求对不可变引用进行修改，所以使用
+    // Cell<T> 进行封装
     state: Cell<RefState>,
 }
 
