@@ -1,3 +1,4 @@
+mod compose_error;
 mod question_mark_main;
 mod error_test1;
 
