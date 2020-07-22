@@ -15,7 +15,7 @@ public: //类中的成员默认是私有的
 
 struct PlayerStruct
 {
-//结构体中的成员默认是共有的
+//结构体中的成员默认是公有的
     int x, y;
     int speed;
 
@@ -27,10 +27,10 @@ struct PlayerStruct
 };
 
 int test() {
-    PlayerClass player1;
+    PlayerClass player1{};
     player1.move(2, 3);
 
-    PlayerStruct player2;
+    PlayerStruct player2{};
     player2.move(2, 3);
 
     std::cin.get();

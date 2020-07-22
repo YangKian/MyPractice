@@ -10,7 +10,9 @@ struct Vector {
     Vector(float a, float b) : x(a), y(b) {}
 
     Vector Add(const Vector& other) const {
-        return Vector(other.x + x, other.y + y);
+//        return Vector(other.x + x, other.y + y);
+        // 为了避免重复写返回类型，使用花括号的形式完成初始化
+        return {other.x + x, other.y + y};
     }
 
     Vector operator+(const Vector& other) const {
@@ -18,7 +20,7 @@ struct Vector {
     }
 
     Vector Multiply(const Vector& other) const {
-        return Vector(other.x * x, other.y * y);
+        return {other.x * x, other.y * y};
     }
 
     Vector operator*(const Vector& other) const {

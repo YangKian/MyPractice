@@ -1,5 +1,7 @@
 #include <iostream>
 
+int test();
+
 class Log
 {
 public:
@@ -43,4 +45,6 @@ int main()
     log.Warn("Hello!");
     log.Info("Hello!");
     std::cin.get();
+
+    test();
 }

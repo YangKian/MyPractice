@@ -13,7 +13,7 @@ public:
         std::cout << "Destroyed Entity!" << std::endl;
     }
 
-    void Print() const {
+    static void Print() {
         std::cout << "Call Print!" << std::endl;
     }
 };
@@ -45,9 +45,13 @@ int main() {
 
     {
         // 构建智能指针的方法一
+        // 使用默认初始化的方式创建智能指针，表示可以指向一个 int 类型的对象，此时得到的是一个空指针
+        std::shared_ptr<int> p1;
+
+        // 构建智能指针的方法二
         // std::unique_ptr<Entity> entity(new Entity());
 
-        // 构建智能指针的方法二，更推荐的做法，因为这种方式是 exception safety 的
+        // 构建智能指针的方法三，更推荐的做法，因为这种方式是 exception safety 的
         std::unique_ptr<Entity> entity = std::make_unique<Entity>();
         entity->Print();
     }

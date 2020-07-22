@@ -1,5 +1,5 @@
 [package]
-name = "rust_by_example"
+name = "tips"
 version = "0.1.0"
 authors = ["YangKian <45479280+YangKian@users.noreply.github.com>"]
 edition = "2018"

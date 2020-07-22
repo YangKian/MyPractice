@@ -96,7 +96,18 @@ pub struct Iter<'a, T> {
 
 impl<T> List<T> {
     pub fn iter(&self) -> Iter<T> {
-        // ::<&Node<T>, _> 意味着：需要返回一个 &Node<T>
+        // Iter 中 next 的类型是 Option<&Node>，而我们通过 map 传入的是 Box<Node>, 最终得到 &Box<Node>，报错
+        // Iter {next: self.head.map(|node| &node)}
+
+        // 先对 node 解引用得到 Node 后再重新引用 &*node，还是报错
+        // 因为 self.head.map 将 node 的所有权传入了闭包，闭包返回引用导致悬挂指针
+        // Iter {next: self.head.map(|node| &*node)}
+
+        // 使用 head.as_ref() 获取引用，再传入 map，此时由于又多了一层引用，因此需要解引用两次
+        // Iter {next: self.head.as_ref().map(|node| &**node)}
+
+        // ::<&Node<T>, _> 意味着：需要返回一个 &Node<T>，需要显示指明的原因是我们在闭包中传入了一个 Option<&T>
+        // 类型，编译器不能很好的为我们执行自动解引用
         Iter { next: self.head.as_ref().map::<&Node<T>, _>(|node| &node)}
     }
 }
@@ -107,6 +118,27 @@ impl<'a, T> Iterator for Iter<'a, T> {
         self.next.map(|node| {
             self.next = node.next.as_ref().map::<&Node<T>, _>(|node| &*node);
             &node.elem
+        })
+    }
+}
+
+pub struct IterMut<'a, T> {
+    next: Option<&'a mut Node<T>>,
+}
+
+impl<T> List<T> {
+    pub fn iter_mut(&mut self) -> IterMut<'_, T> {
+        IterMut { next: self.head.as_mut().map(|node| &mut **node) }
+    }
+}
+
+impl<'a, T> Iterator for IterMut<'a, T> {
+    type Item = &'a mut T;
+
+    fn next(&mut self) -> Option<Self::Item> {
+        self.next.take().map(|node| {
+            self.next = node.next.as_mut().map(|node| &mut **node);
+            &mut node.elem
         })
     }
 }
@@ -193,5 +225,16 @@ mod test {
         assert_eq!(iter.next(), Some(&3));
         assert_eq!(iter.next(), Some(&2));
         assert_eq!(iter.next(), Some(&1));
+    }
+
+    #[test]
+    fn iter_mut() {
+        let mut list = List::new();
+        list.push(1); list.push(2); list.push(3);
+
+        let mut iter = list.iter_mut();
+        assert_eq!(iter.next(), Some(&mut 3));
+        assert_eq!(iter.next(), Some(&mut 2));
+        assert_eq!(iter.next(), Some(&mut 1));
     }
 }

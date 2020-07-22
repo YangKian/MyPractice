@@ -52,7 +52,7 @@ void PrintName(Entity *e) {
     std::cout << e -> GetName() << std::endl;
 }
 
-void PrintClassName(Printable* p) { // 注意这里的参数只能用指针类型
+void PrintClassName(Printable *p) { // 注意这里的参数只能用指针类型
     std::cout << p -> GetClassName() << std::endl;
 }
 
@@ -62,10 +62,10 @@ int main() {
     player.Y = 3;
     player.Move(5, 9);
 
-    Player *p1 = new Player("Tom");
+    auto *p1 = new Player("Tom");
     PrintName(p1);
 
-    Entity *e = new Entity();
+    auto *e = new Entity();
     PrintName(e);
 
     PrintClassName(p1);
