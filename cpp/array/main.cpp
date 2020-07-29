@@ -1,5 +1,6 @@
 #include <iostream>
 #include <array>
+#include <algorithm>
 
 int main() {
     int example[5]; // 数组的本质其实是指针
@@ -15,4 +16,10 @@ int main() {
         i = 2;
 
     std::array<int, 5> std_array{}; // 已初始化
+
+    int array[5] = {1, 2, 2, 2, 5};
+    int *res = std::find(std::begin(array), std::end(array), 2);
+    if (res != std::end(array)) {
+        std::cout << "find: " << std::distance(array, res) << std::endl;
+    }
 }

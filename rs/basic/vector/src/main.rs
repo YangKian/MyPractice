@@ -1,6 +1,7 @@
 fn main() {
     let v: Vec<i32> = Vec::new(); // 注意要加入类型注解，说明该 vector 中存储的是什么类型的元素
     let v = vec![1, 2, 3]; // 使用宏 vec! 来创建一个初始化的 Vec<i32>
+    let v = vec![0; 20]; // 带有默认值的初始化，第一个元素是默认值，第二个元素是 vector 的长度
 
     // 增
     let mut v = Vec::new();
@@ -41,7 +42,7 @@ fn main() {
         println!("{}", i);
     }
 
-    let mut v = vec![100,32, 57];
+    let mut v = vec![100, 32, 57];
     for i in &mut v {
         *i += 50; // 注意解引用
     }

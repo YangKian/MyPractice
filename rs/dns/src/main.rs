@@ -1,74 +1,28 @@
+// use crate::
+use std::fs::File;
+use std::io::Read;
+use dns::{BytePacketBuffer, DnsPacket};
 use dns::Result;
 
-pub struct BytePacketBuffer {
-    pub buf: [u8; 512],
-    pub pos: usize,
-}
+fn main() -> Result<()>{
+    let mut f = File::open("response_packet.txt")?;
+    let mut buffer = BytePacketBuffer::new();
+    f.read(&mut buffer.buf)?;
 
-impl BytePacketBuffer {
-    pub fn new() -> Self {
-        BytePacketBuffer {
-            buf: [0; 512],
-            pos: 0,
-        }
+    let packet = DnsPacket::from_buffer(&mut buffer)?;
+    println!("{:#?}", packet.header);
+
+    for q in packet.questions {
+        println!("{:#?}", q);
     }
-
-    fn position(&self) -> usize {
-        self.pos
+    for rec in packet.answers {
+        println!("{:#?}", rec);
     }
-
-    fn step(&mut self, steps: usize) -> Result<()> {
-        self.pos += steps;
-        Ok(())
+    for rec in packet.authorities {
+        println!("{:#?}", rec);
     }
-
-    fn seek(&mut self, pos: usize) -> Result<()> {
-        self.pos = pos;
-        Ok(())
+    for rec in packet.resources {
+        println!("{:#?}", rec);
     }
-
-    /// Read a single byte and move the position one step forward
-    fn read(&mut self) -> Result<u8> {
-        if self.pos >= 512 {
-            return Err("End of buffer".into());
-        }
-        let res = self.buf[self.pos];
-        self.pos += 1;
-        Ok(res)
-    }
-
-    /// Get a single byte, without changing the buffer position
-    fn get(&self, pos: usize) -> Result<u8> {
-        if pos >= 512 {
-            return Err("End of buffer.".into());
-        }
-        Ok(self.buf[pos])
-    }
-
-    fn get_range(&mut self, start: usize, len: usize) -> Result<&[u8]> {
-        if start + len >= 512 {
-            return Err("End of buffer".into());
-        }
-        Ok(&self.buf[start..start + len])
-    }
-
-    /// Read two bytes, stepping two steps forward
-    fn read_u16(&mut self) -> Result<u16> {
-        let res = ((self.read()? as u16) << 8 | (self.read()? as u16));
-        Ok(res)
-    }
-
-    fn read_u32(&mut self) -> Result<u32> {
-        let res = ((self.read()? as u32) << 24)
-            | ((self.read()? as u32) << 16)
-            | ((self.read()? as u32) << 8)
-            | ((self.read()? as u32) << 0);
-        Ok(res)
-    }
-
-    fn
-}
-
-fn main() {
-    println!("Hello, world!");
+    Ok(())
 }

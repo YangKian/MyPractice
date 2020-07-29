@@ -3,7 +3,7 @@ use std::rc::Rc;
 // 构造一个不可变链表
 // 使用不可变链表的原因：实现在多线程之间共享数据
 
-// Arc 和 Rc 的区别：Arc 对引用计数的修改时原子性的，即 Arc 是线程安全的
+// Arc 和 Rc 的区别：Arc 对引用计数的修改是原子性的，即 Arc 是线程安全的
 // Rust models thread-safety in a first-class way with two traits: Send and Sync.
 // A type is Send if it's safe to move to another thread. A type is Sync if it's
 // safe to share between multiple threads.
