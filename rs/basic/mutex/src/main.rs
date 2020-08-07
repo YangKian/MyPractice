@@ -5,8 +5,10 @@ use std::rc::Rc;
 fn main() {
     let m = Mutex::new(5);
     {
-        // 调用 lock 返回一个 MutexGuard 的智能指针，实现了 Deref 来指向内部数据，
-        // 该智能指针同时还有一个 Drop 实现当 MutexGuard 离开作用域时自动释放锁
+        // 调用 lock 返回一个 LockResult<MutexGuard<'_, T>>，封装了 MutexGuard
+        //  - MutexGuard 是智能指针，实现了 Deref 来指向内部数据，
+        //    该智能指针同时还有一个 Drop 实现当 MutexGuard 离开作用域时自动释放锁
+        //  - LockResult 是一个 Result 对象的类型别名
         let mut num = m.lock().unwrap();
         *num = 6;
     }
