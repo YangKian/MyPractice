@@ -1,5 +1,6 @@
 use std::thread;
 use std::time::Duration;
+use closure::{Fnc, FncMove};
 
 
 // 通过创建一个结构体来持有闭包和其生成的值，这样在我们需要生成值时可以调用闭包，然后缓存结果，避免
@@ -133,4 +134,18 @@ fn main() {
     let equal_to_x = move |z| z == x;
     let y = vec![1, 2, 3];
     assert!(equal_to_x(y));
+
+    // ===================================================
+
+    let fnc = Fnc{ s: "test".to_string() };
+    let f1 = fnc(1, 2);
+    assert_eq!(f1, "test".to_string());
+    // let f2 = fnc(2, 3); 不能再使用，因为此时 fnc 变量已经 move 到 f1
+
+    let str = "test".to_string();
+    let mut fnc_mut = FncMove{ s: &str };
+    let f1 = fnc_mut(1, 2);
+    assert_eq!(f1, "test".to_string());
+    let f2 = fnc_mut(2, 3);
+    assert_eq!(f2, "test".to_string());
 }
