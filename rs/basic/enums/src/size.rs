@@ -58,3 +58,36 @@ fn test() {
     show_last_four_bytes("surprise2", &surprise2);
 }
 
+#[cfg(test)]
+mod tests {
+    #[test]
+    fn t() {
+        #[repr(C)]
+        struct A {
+            first: u8,
+            second: u8,
+            forth: u32,
+            third: u8,
+        }
+
+        assert_eq!(12, std::mem::size_of::<A>());
+
+        #[repr(C)]
+        struct B {
+            first: u8,
+            second: u8,
+            third: u32,
+            forth: u16,
+        }
+        assert_eq!(12, std::mem::size_of::<B>());
+
+        struct C(u16, u8, u16);
+        assert_eq!(6, std::mem::size_of::<C>());
+
+        struct D{}
+        assert_eq!(0, std::mem::size_of::<D>());
+
+        assert_eq!(std::mem::size_of::<Box<i32>>(), std::mem::size_of::<usize>())
+    }
+}
+

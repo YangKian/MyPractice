@@ -36,4 +36,21 @@ fn main() {
     let x = 5;
     let y = x;
     println!("x = {}, y = {}", x, y);
+
+    #[derive(Debug)]
+    struct T {
+        name: String,
+        v: i32,
+    }
+
+    let mut p = T { name: "Tome".to_string(), v: 1 };
+    // 对于结构体，转移其中部分字段的所有权后，再调用整个结构体会报错
+    let name = p.name;
+    // println!("{:?}", p);
+    // 但是可以调用未转移所有权的字段
+    // println!("{:?}", p.v);
+    // 在重新恢复确实所有权字段的所有权后，又可以继续调用整个结构体
+    p.name = "Jerry".to_string();
+    println!("{:?}", p);
+
 }
