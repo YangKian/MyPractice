@@ -1,3 +1,5 @@
+mod const_expression;
+
 fn main() {
     // 元组：元组中的各元素类型可以不同
     let tup: (i32, f64, u8) = (500, 6.4, 1);
