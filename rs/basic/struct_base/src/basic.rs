@@ -35,6 +35,10 @@ fn main() {
     let black = Color(0, 0, 0);
     let origin = Point(0, 0, 0);
 
+    // 单元结构体，其实例就是它自身，不管创建多少实例，编译器都会把它们优化为同一个
+    // 单元结构体也不会占用实际的内存空间，是一个零大小类型
+    struct Unit;
+
 }
 
 fn build_user(email: String, username: String) -> User {

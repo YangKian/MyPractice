@@ -1,8 +1,10 @@
 /*
  * rust 中的 string 有两种：
- *  - 标准库中的 String，是一个可变的，可增长的，拥有所有权的类型
- *  - core language 中的 str(string slice)，通常是 borrowed form：&str，字符串的字面量属于该类型
+ *  - 标准库中的 String，是一个可变的，可增长的，拥有所有权的类型，实际上是 Vec<u8>
+ *  - core language 中的 str(string slice)，通常是 borrowed form：&str，字符串的字面量属于该类型，&str 是胖指针
  * 两种 string 都使用 UTF-8 编码
+ * 还有一种表示字符串的方法：字符串切片 &[u8]，也是胖指针，&str 可以安全的转换为 &[u8]，而反之则不成立，这是因为
+ * &str 一定满足 utf-8 编码，而 &[u8] 则未必
 */
 
 fn main() {

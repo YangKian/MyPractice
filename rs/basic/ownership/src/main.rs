@@ -13,6 +13,13 @@ mod function_and_parameter_ownership;
  * 编译时已知大小的数据被存储在栈上
 */
 
+/**
+ * 引用和指针的区别：
+    - 引用不可能为空
+    - 引用有生命周期
+    - 引用受借用检查器保护不会发生悬垂指针等问题
+*/
+
 fn main() {
 
     let mut s = String::from("hello"); // 使用字面量来创建 string
