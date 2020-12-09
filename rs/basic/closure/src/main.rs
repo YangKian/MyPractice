@@ -7,8 +7,7 @@ use closure::{Fnc, FncMove};
 // 后续使用时还要重复计算。
 // 存在的问题：定义结构体，枚举等需要知道成员的类型，通过泛型和 trait bound 来实现
 // Fn trait 由标准库提供，所有的闭包都至少实现了以下三个 trait 中的一个：Fn, FnMut, or FnOnce.
-// Add types to the Fn trait bound to represent the types of the parameters
-// and return values the closures must have to match this trait bound.
+// 可以为 Fn trait 添加类型绑定，用以表示参数和返回值的类型，此时闭包必须与该 trait bound 相匹配
 struct Cacher<T>
 where T: Fn(u32) -> u32, // 注意这里 trait bound 的用法
 {
@@ -100,6 +99,16 @@ fn main() {
     // 每个闭包的实例都有自己唯一的匿名类型，也就是说，尽管两个闭包的函数签名相同，他们的类型也有可能不同
 
     // 闭包捕获上下文环境变量
+    // 有三种捕获变量的方式，实际上对应了 rust 的所有权机制
+    //  - 未捕获环境变量，对应所有权（ownership）
+    //      let x = || { println!("a") };
+    //  - 捕获并修改了环境变量，对应可变借用（&mut T)
+    //      let mut a = 10;
+    //      let mut x = || { a = 5 };
+    //  - 捕获但是不修改环境变量，对应不可变借用 (&T)
+    //      let a = 10;
+    //      let x = || { a };
+    //
     //  Closures can capture values from their environment in three ways, which directly map to
     //  the three ways a function can take a parameter: taking ownership, borrowing mutably, and
     //  borrowing immutably. These are encoded in the three Fn traits as follows:

@@ -54,4 +54,7 @@ fn main() {
         *count += 1; // 注意解引用
     }
     println!("{:?}", map);
+
+    let keys = map.keys().map(|&k| k.to_string()).collect::<Vec<String>>();
+    println!("{:?}", keys)
 }

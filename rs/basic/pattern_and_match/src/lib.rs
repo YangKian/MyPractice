@@ -42,6 +42,23 @@ mod test {
         }
     }
 
+    // ref 匹配
+    #[test]
+    fn ref_match() {
+        fn f(x: &Option<String>) {
+            match x {
+                // &Some(s) => {println!("{:?}", s)}, // 报错：s 是 String 类型，没有实现 Copy，
+                // &Some(s) 是共享引用，不允许转移 s 的所有权
+                &Some(ref s) => {println!("{:?}", s)},
+                // 或者直接 Some(s) => {...}，此时 s 的类型也是 &String，实际上是编译器自动实现了解引用和 ref 的插入
+                None => {},
+            }
+        }
+
+        let x = Some("hello".to_owned());
+        f(&x);
+    }
+
     #[test]
     fn matching_ranges_of_values() {
         let x = 5;
@@ -118,12 +135,12 @@ mod test {
         Hsv(i32, i32, i32),
     }
 
-    enum Message {
-        ChangeColor(Color),
-    }
-
     #[test]
     fn destruct_nested_enum() {
+        enum Message {
+            ChangeColor(Color),
+        }
+
         let msg = Message::ChangeColor(Color::Hsv(0, 160, 255));
 
         match msg {
