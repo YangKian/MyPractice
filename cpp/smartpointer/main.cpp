@@ -1,6 +1,6 @@
 #include <iostream>
 #include <string>
-#include <memory>
+#include <memory> // 智能指针包含在该头文件中
 
 class Entity {
 public:

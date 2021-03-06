@@ -7,6 +7,8 @@
  * &str 一定满足 utf-8 编码，而 &[u8] 则未必
 */
 
+mod cow;
+
 fn main() {
     let mut s = String::new();
 
