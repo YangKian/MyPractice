@@ -38,6 +38,7 @@ public:
         printf("Moved!!!\n");
 
         if (this != &other) {
+            // 注意：在赋值时，当前 m_Data 中已经分配了内存，因此需要先释放掉这部分的内存
             delete[] m_Data;
             m_Size = other.m_Size;
             m_Data = other.m_Data;

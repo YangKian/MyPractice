@@ -9,10 +9,12 @@ void PrintString(const std::string& str) {
 }
 
 int main() {
+    // 注意，C++ 中 char 用单引号包裹，用双引号包裹得到的是 char*，注意不是 string !!!
     const char* name = "Tom";
     std::cout << name << std::endl;
     //name[2] = 'a'; 错误的用法
 
+    // 注意不要漏了最后的 '\0'
     char name1[4] = {'T', 'o', 'm', '\0'};
     std::cout << name1 << std::endl;
 
@@ -27,7 +29,7 @@ int main() {
     std::cout << name3 << std::endl;
 
     std::string s_name = "Bob";
-    // std::string s_wrong_use = "Bob" + "Tom"; 错误的用法，string 其实是 const char
+    // std::string s_wrong_use = "Bob" + "Tom"; 错误的用法，string 其实是 const char[]
     std::cout << s_name << std::endl;
     s_name += " Tom"; // 其实是创建了一个新的 s_name
     std::cout << s_name << std::endl;

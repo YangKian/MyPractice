@@ -75,6 +75,8 @@ func mergeTwoChannel(ch1, ch2 <-chan interface{}) <-chan interface{} {
 		for ch1 != nil || ch2 != nil {
 			select {
 			case v, ok := <- ch1:
+				// 如果 ch1 关闭，将 ch1 设置为 nil，由于从一个 nil channel
+				// 读取值会一直阻塞，所以该分支不会再被执行
 				if !ok {
 					ch1 = nil
 					break

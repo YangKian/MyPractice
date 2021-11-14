@@ -10,6 +10,7 @@
  */
 
 
+// 如果 static.cpp 中的 s_Variable 变量没有加 static，则在这里要使用 extern int s_Variable;
 int s_Variable = 5;
 
 extern void Func(){};
@@ -41,7 +42,7 @@ static void print(Entity e)
     std::cout << e.a << ", " << e.b << std::endl;
 }
 
-// 注意不加下面两行会报错，因为后面的代码通过实例对类内静态变量进行了访问
+// 注意不加下面两行，分割线 === 以上的部分会报错，因为后面的代码通过实例对类内静态变量进行了访问
 int Entity::x;
 int Entity::y;
 
@@ -56,6 +57,8 @@ int main() {
     Entity entity2;
     entity2.x = 4;
     entity2.y = 7;
+
+    // ======================================================
 
     // 正确的写法，通过命名空间访问静态变量
     Entity::x = 5;
