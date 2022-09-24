@@ -1,0 +1,14 @@
+[package]
+name = "async_basic"
+version = "0.1.0"
+edition = "2021"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[dependencies]
+futures = "0.3.24"
+tokio = { version = "1.21.1", features = ["full"] }
+log = "0.4.17"
+env_logger = "0.9.0"
+reqwest = "0.11.11"
+

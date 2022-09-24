@@ -1,0 +1,30 @@
+[workspace]
+
+members = [
+    "channel",
+    "closure",
+    "common_concept",
+    "condition_variable",
+    "enums",
+    "error",
+    "generic",
+    "guessing_game",
+    "hashmap",
+    "iterator",
+    "macros",
+    "mingrep",
+    "mutex",
+    "oop",
+    "ownership",
+    "pattern_and_match",
+    "slice",
+    "smartpointer/*",
+    "string",
+    "struct_base",
+    "thread",
+    "tips",
+    "unsafe_rust/raw_pointer",
+    "vector",
+    "web_server",
+    "async/*"
+]
