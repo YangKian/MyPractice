@@ -21,9 +21,7 @@ require (
 	github.com/swaggo/gin-swagger v1.2.0
 	github.com/swaggo/swag v1.6.3
 	github.com/unknwon/com v1.0.1
-	golang.org/x/net v0.0.0-20191126235420-ef20fe5d7933 // indirect
-	golang.org/x/sys v0.0.0-20191128015809-6d18c012aee9 // indirect
-	golang.org/x/tools v0.0.0-20191130070609-6e064ea0cf2d // indirect
+	golang.org/x/net v0.7.0 // indirect
 	gopkg.in/go-playground/validator.v9 v9.30.2 // indirect
 	gopkg.in/ini.v1 v1.51.0 // indirect
 	gopkg.in/yaml.v2 v2.2.7 // indirect
